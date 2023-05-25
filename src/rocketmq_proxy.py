@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+"""
+a proxy for rocketmq
+"""
+
+__author__ = "dainan13"
+__version__ = "1.0.0"
+
 import asyncio
 import struct
 import json
