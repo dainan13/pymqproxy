@@ -1,0 +1,40 @@
+# config the proxy address in here
+#
+#    catalog       example                   description
+#
+# type :
+#    ns            ns                        for a nameserver
+#    bk            bk                        for a broker
+#                  bkz                       for a broker, straight translate to the listenaddr
+#                  bk*                       dynamic create for broker
+#
+# listenaddr:
+#    ip:port       0.0.0.0:12345             a listen ip and port
+#    dynamic       0.0.0.0:12345-23456       only used for `bk*`, a group of port for dynamic create
+#
+# socks5proxy:
+#    ip:port       192.168.1.2:12345         the addr of socks5 pipe for traversal
+#    -             -                         not use socks5 to traversal
+#                                                if type is `bkz`, must as `-`
+#
+# mqaddr:
+#    ip:port       10.10.10.2:23456          the mq server addr of the proxy end
+#    domain:port   example.com:23456         the mq server addr of the proxy end
+#    dynamic       *                         only used for `bk*`, `*` is mean for all
+#                  *.example.com:*               a string match
+#                  10.10.10.0/24                 the subnet of 10.10.10.* will match
+#                  10.10.10.5:12345-23456        a range of port to match
+#
+
+
+# for nameserver
+#type  listenaddr             socks5proxy         mqaddr
+#ns     0.0.0.0:19876          127.0.0.1:44444     10.10.10.10:9876
+
+# for broker
+#type  listenaddr             socks5proxy         mqaddr
+#bk     0.0.0.0:19011          127.0.0.1:44444     10.10.10.11:10911
+#bkz    0.0.0.0:19012          -                   10.10.10.12:11011
+#bk*    0.0.0.0:20000-30000    127.0.0.1:44444     10.10.10.0/24
+
+
